@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
+
 import './App.css';
 
-function App() {
+import HomePage from './pages/hompage/homepage.component';
+import Header from './components/header/header.component';
+
+const App = () => {
+
+  const [searchText, setSearchText] = useState('');
+  const [searchItem, setSearchItem] = useState('');
+
+  const onChangeHandler = (event) => {
+    const { value } = event.target;
+    setSearchText(value);
+  }
+
+  const onClickSearchIcon = () => {
+    console.log('click Search Icon');
+    setSearchItem(searchText);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <BrowserRouter>
+        <Header onChangeHandler={onChangeHandler} searchText={searchText} onSearchHandler= {onClickSearchIcon}/>
+        <Switch>
+          <Route exact path='/' component={() => (<HomePage searchText={searchItem} />)} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
+
