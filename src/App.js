@@ -3,7 +3,7 @@ import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 
 import './App.css';
 
-import HomePage from './pages/hompage/homepage.component';
+import HomePage from './pages/homepage/homepage.component';
 import Header from './components/header/header.component';
 
 const App = () => {

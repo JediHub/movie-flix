@@ -1,15 +1,11 @@
 import React from 'react';
-import MenuItem from '../menu-item/menu-item.component';
 import './directory.styles.scss';
 
-const Directory = ({ movies, onClickHandler}) => {
+const Directory = (props) => {
     
     return (
         <div className="directory-menu">
-            {movies.map((movie) =>
-                (<MenuItem key={movie.imdbID} movieDetail={movie} onClickHandler={onClickHandler} />
-                )
-            )}
+            {props.children}
         </div>
     );
 }

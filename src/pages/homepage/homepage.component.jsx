@@ -2,6 +2,8 @@ import React from 'react'
 import './homepage.styles.scss';
 import Directory from '../../components/directory/directory.component';
 import { withRouter } from 'react-router-dom';
+import MenuItem from '../../components/menu-item/menu-item.component';
+import SearchYourMovie from '../../components/search-your-movie/search-your-movie.component';
 
 class HomePage extends React.Component {
 
@@ -32,8 +34,8 @@ class HomePage extends React.Component {
         const res = await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=49f541c8&s=${movieTitle}`,
             { method: 'GET' });
         const data = await res.json();
-        console.log('Movies :- ', data.Search);
-        this.setState({ movies: data.Search  })
+        console.log('Movies :- ', data);
+        this.setState({ movies: data.Search })
     }
 
     onClickHandler = (event) => {
@@ -45,7 +47,14 @@ class HomePage extends React.Component {
         const searchedMovies = this.state.movies;
         return (
             <div className="homepage" >
-                <Directory movies={searchedMovies} onClickHandler={this.onClickHandler} />
+                {this.state.movies.length >0 ?
+                    (<Directory>
+                        {searchedMovies.map((movie) =>
+                            (<MenuItem key={movie.imdbID} movieDetail={movie} onClickHandler={this.onClickHandler} />
+                            )
+                        )}
+                    </Directory>)
+                    : <SearchYourMovie />}
             </div>
         )
     }

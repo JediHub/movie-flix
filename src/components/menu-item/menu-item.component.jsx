@@ -16,7 +16,7 @@ const MenuItem = ({ movieDetail, onClickHandler }) => {
             <div className='content'>
                 <div className='content-header'>
                     <span className='content-title'> {Title.toUpperCase()}</span>
-                    <span className='rating'>{imdbID}</span>
+                   {/* <span className='rating'>{imdbID}</span> */}
                 </div>
                 <div className='description'>{Year}</div>
             </div>
